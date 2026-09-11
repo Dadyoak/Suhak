@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 수학여행 인솔 교사 확인표 · 용산초등학교</title>
+<style>
+  :root{
+    --ink:#16233A;
+    --ink2:#48566E;
+    --ink3:#7C8798;
+    --line:#D8DEE7;
+    --line2:#ECEFF4;
+    --paper:#FFFFFF;
+    --wash:#F2F5F8;
+    --signal:#C4122F;
+    --hazard:#EFB700;
+    --go:#166B4E;
+    --sync:#0E6C88;
+    --syncwash:#E8F3F7;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--wash);color:var(--ink);
+    font-family:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+    font-size:16px;line-height:1.62;word-break:keep-all;
+  }
+  .wrap{max-width:800px;margin:0 auto;background:var(--paper);min-height:100vh;
+        border-left:1px solid var(--line);border-right:1px solid var(--line)}
+
+  /* 상단 */
+  header.top{position:sticky;top:0;z-index:60;background:var(--ink);color:#fff;
+             padding:12px 18px 0;border-bottom:3px solid var(--hazard)}
+  .top h1{margin:0;font-size:17px;font-weight:800;letter-spacing:-.02em}
+  .top p{margin:3px 0 10px;font-size:12.5px;color:#B7C2D3;font-variant-numeric:tabular-nums}
+  .menubtn{display:flex;align-items:center;gap:7px;width:100%;margin:0 0 10px;min-height:40px;
+    padding:7px 12px;background:#1E2D48;border:1px solid #3B4864;border-radius:9px;color:#DCE3EE;
+    font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;text-align:left}
+  .menubtn:hover{background:#2D3F61;color:#fff}
+  .menubtn:focus-visible{outline:none;box-shadow:0 0 0 2px var(--hazard)}
+  .menubtn i{font-style:normal;font-size:11px;transition:transform .18s ease}
+  .menubtn[aria-expanded=true] i{transform:rotate(180deg)}
+  .menubtn b{flex:1;font-weight:700}
+  .navchips{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:12px}
+  .navchips[hidden]{display:none}
+  .navchips a{color:#DCE3EE;text-decoration:none;font-size:13px;font-weight:600;
+              padding:7px 11px;border:1px solid #3B4864;border-radius:999px;background:#1E2D48}
+  .navchips a:hover,.navchips a:focus-visible{background:#2D3F61;color:#fff;outline:none}
+  .navchips a:focus-visible{box-shadow:0 0 0 2px var(--hazard)}
+
+  /* 공유 바 */
+  .share{background:var(--syncwash);border-bottom:1px solid #C6DEE7;padding:11px 16px;
+         display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .share button{min-height:36px;padding:5px 12px;border:1px solid #A9CBD8;background:#fff;color:#0B4E62;
+    border-radius:7px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+  .share button:hover{background:#DCEDF3}
+  .share .state{flex:1;font-size:12.5px;color:#0B4E62;font-variant-numeric:tabular-nums}
+  .share .state.warn{color:var(--signal);font-weight:700}
+
+  /* 요약 보드 */
+  .board{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+  .board div{padding:12px 6px;text-align:center;border-right:1px solid var(--line2)}
+  .board div:last-child{border-right:0}
+  .board b{display:block;font-size:25px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+  .board span{font-size:11.5px;color:var(--ink3);font-weight:600}
+
+  section{padding:22px 18px;border-bottom:1px solid var(--line)}
+  section h2{margin:0 0 3px;font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .sub{margin:0 0 14px;font-size:13.5px;color:var(--ink2)}
+
+  /* 긴급 */
+  .urgent{background:#FCF3F4}
+  .calls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+  .calls a{display:block;padding:12px 13px;background:#fff;border:1px solid #E4BCC3;border-left:4px solid var(--signal);
+    border-radius:0 8px 8px 0;text-decoration:none;color:var(--ink)}
+  .calls a:hover{background:#FFF7F8}
+  .calls b{display:block;font-size:13px;font-weight:700}
+  .calls span{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .chain{margin:0;padding:0;list-style:none;counter-reset:c}
+  .chain li{counter-increment:c;position:relative;padding:7px 0 7px 32px;font-size:14px;border-top:1px solid #E7D3D6}
+  .chain li::before{content:counter(c);position:absolute;left:0;top:8px;width:21px;height:21px;border-radius:50%;
+    background:var(--signal);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center}
+
+  /* 체크리스트 */
+  .grp{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+  .grp>header{display:flex;justify-content:space-between;align-items:center;gap:8px;
+    background:var(--wash);padding:10px 13px;border-bottom:1px solid var(--line)}
+  .grp>header b{font-size:14.5px;font-weight:800}
+  .grp>header .prog{font-size:13px;font-weight:800;color:var(--go);font-variant-numeric:tabular-nums}
+  .grp ul{list-style:none;margin:0;padding:0}
+  .grp li{border-top:1px solid var(--line2)}
+  .grp li:first-child{border-top:0}
+  .grp label{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;cursor:pointer;font-size:14.5px}
+  .grp label:hover{background:#FAFCFD}
+  .grp input[type=checkbox]{flex:0 0 auto;width:21px;height:21px;margin:1px 0 0;accent-color:var(--go)}
+  .grp label span{flex:1}
+  .grp label em{display:block;font-style:normal;font-size:12px;color:var(--sync);font-weight:700;
+    font-variant-numeric:tabular-nums;margin-top:2px}
+  .grp li.done label span{color:var(--ink2)}
+
+  /* 인원 점검 */
+  .stamp{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:11px 0;border-bottom:1px solid var(--line2)}
+  .stamp b{flex:0 0 92px;font-size:14px;font-weight:700}
+  .stamp button{min-height:38px;padding:6px 14px;border:1px solid var(--ink);background:#fff;color:var(--ink);
+    border-radius:7px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+  .stamp button:hover{background:var(--wash)}
+  .stamp button.done{background:var(--go);border-color:var(--go);color:#fff}
+  .stamp output{font-size:12.5px;color:var(--ink2);font-variant-numeric:tabular-nums;font-weight:600}
+
+  /* 탭 */
+  .tabs{display:flex;gap:6px;margin-bottom:12px}
+  .tabs button{flex:1;min-height:42px;border:1px solid var(--line);background:#fff;border-radius:8px;
+    font-family:inherit;font-size:14px;font-weight:700;color:var(--ink2);cursor:pointer}
+  .tabs button[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .tl{list-style:none;margin:0;padding:0}
+  .tl li{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line2)}
+  .tl li:first-child{border-top:0}
+  .tl time{font-size:13px;font-weight:800;color:var(--ink2);font-variant-numeric:tabular-nums;padding-top:1px}
+  .tl b{display:block;font-size:14.5px;font-weight:700}
+  .tl p{margin:2px 0 0;font-size:13px;color:var(--ink2)}
+  .tl em{display:inline-block;font-style:normal;margin-top:4px;font-size:12px;font-weight:800;color:var(--signal);
+    background:#FCE9EC;padding:2px 7px;border-radius:5px}
+
+  /* 표 */
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:9px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:430px}
+  th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line2);vertical-align:top}
+  th{background:var(--wash);font-weight:700;font-size:12.5px;color:var(--ink2);white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+
+  /* 요양호 */
+  .care{border:1px solid #E0C7CC;border-left:4px solid var(--signal);border-radius:0 9px 9px 0;
+        padding:11px 13px;margin-bottom:9px;background:#FEFAFA}
+  .care b{font-size:14.5px;font-weight:800}
+  .care i{font-style:normal;font-size:12px;font-weight:700;color:var(--ink3);margin-left:5px}
+  .care p{margin:3px 0 0;font-size:13.5px;color:var(--ink2)}
+  .care.top{background:#FCEBEE;border-color:#D89AA5}
+  .care.top p{color:#7A1526}
+
+  /* 좌석 */
+  .bus{border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden}
+  .bus>header{background:var(--ink);color:#fff;padding:9px 13px}
+  .bus>header b{font-size:14.5px;font-weight:800}
+  .bus>header span{display:block;font-size:12.5px;color:#B7C2D3}
+  .seats{display:grid;grid-template-columns:1fr 1fr 20px 1fr;gap:5px;padding:11px}
+  .seat{background:var(--wash);border:1px solid var(--line);border-radius:6px;padding:6px 3px;text-align:center;
+    font-size:12px;font-weight:600;position:relative;min-height:34px}
+  .seat i{position:absolute;top:1px;left:4px;font-style:normal;font-size:9px;color:var(--ink3);font-weight:700}
+  .seat.staff{background:#E7EDF4;color:var(--ink2)}
+  .seatin{width:100%;padding:0;border:0;background:none;font-family:inherit;font-size:12px;
+    font-weight:700;color:var(--ink2);text-align:center;min-height:22px}
+  .seatin:focus{outline:none;background:#fff;border-radius:4px;box-shadow:0 0 0 2px var(--sync)}
+  .seat.staff:has(.seatin.changed){background:var(--syncwash);border-color:#A9CBD8}
+  .seatin.changed{color:#0B4E62}
+  .seat.empty .seatin{color:var(--ink3);font-weight:600}
+  .seat:not(.staff):not(.empty) .seatin{color:var(--ink)}
+  .seat:has(.seatin.changed){background:var(--syncwash);border-color:#A9CBD8;border-style:solid}
+  .seat.empty{background:#fff;color:var(--ink3);border-style:dashed}
+  .aisle{}
+
+  /* 상황별 */
+  .case{border-left:4px solid var(--signal);background:#FCF5F6;padding:12px 14px;border-radius:0 8px 8px 0;margin-bottom:10px}
+  .case b{display:block;font-size:14.5px;font-weight:800;margin-bottom:4px}
+  .case ol{margin:0;padding-left:18px;font-size:13.5px}
+  .case li{margin:2px 0}
+
+  /* 접기 */
+  details{border:1px solid var(--line);border-radius:9px;margin-bottom:9px;overflow:hidden}
+  summary{padding:11px 13px;font-size:14.5px;font-weight:700;cursor:pointer;background:var(--wash);list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"펼치기";float:right;font-size:12px;font-weight:700;color:var(--ink3)}
+  details[open] summary::after{content:"접기"}
+  .dbody{padding:11px 13px}
+
+
+  /* 조식 확인 */
+  .meal{margin-top:9px;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+  .meal>.mhead{display:flex;align-items:center;gap:7px;width:100%;padding:9px 11px;background:var(--wash);
+    border:0;font-family:inherit;font-size:13.5px;font-weight:800;color:var(--ink);cursor:pointer;text-align:left}
+  .meal>.mhead i{font-style:normal;font-size:10px;color:var(--ink3);transition:transform .18s ease}
+  .meal.is-open>.mhead i{transform:rotate(180deg)}
+  .meal>.mhead .cnt{margin-left:auto;font-weight:800;color:var(--ink3);font-variant-numeric:tabular-nums}
+  .meal.done>.mhead .cnt{color:var(--go)}
+  .meal .mbody{display:none;padding:9px 10px 10px;border-top:1px solid var(--line)}
+  .meal.is-open .mbody{display:block}
+  .mtools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+  .mtools button{min-height:34px;padding:5px 10px;border:1px solid var(--line);background:#fff;border-radius:7px;
+    font-family:inherit;font-size:12.5px;font-weight:700;color:var(--ink2);cursor:pointer}
+  .mtools button:hover{background:var(--wash)}
+  .mtools button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .mcls{border:1px solid var(--line);border-radius:8px;margin-bottom:7px;overflow:hidden}
+  .mcls>.chead{display:flex;align-items:center;gap:7px;width:100%;padding:9px 11px;background:#fff;border:0;
+    font-family:inherit;font-size:13.5px;font-weight:700;color:var(--ink);cursor:pointer;text-align:left}
+  .mcls>.chead i{font-style:normal;font-size:10px;color:var(--ink3);transition:transform .18s ease}
+  .mcls.is-open>.chead i{transform:rotate(180deg)}
+  .mcls>.chead .bus{font-size:11px;font-weight:700;color:var(--ink3);border:1px solid var(--line);
+    border-radius:4px;padding:1px 5px}
+  .mcls>.chead .cnt{margin-left:auto;font-weight:800;color:var(--ink3);font-variant-numeric:tabular-nums}
+  .mcls.done>.chead .cnt{color:var(--go)}
+  .mcls .cbody{display:none;border-top:1px solid var(--line2)}
+  .mcls.is-open .cbody{display:block}
+  .msec{margin:12px 2px 6px;font-size:12px;font-weight:800;color:var(--ink3);letter-spacing:.02em}
+  .msec:first-of-type{margin-top:2px}
+  .mcls>.chead .rn{font-weight:800;font-variant-numeric:tabular-nums}
+  .mgrp{font-size:11.5px;font-weight:700;color:var(--ink3);padding:8px 11px 3px;background:#FAFBFC}
+  .mitem{display:flex;align-items:center;gap:9px;padding:9px 11px;cursor:pointer;
+    border-top:1px solid var(--line2);font-size:14.5px}
+  .mitem:hover{background:#FAFCFD}
+  .mitem input{flex:0 0 auto;width:21px;height:21px;margin:0;accent-color:var(--go)}
+  .mitem .nm{flex:1}
+  .mitem.on .nm{color:var(--ink3);text-decoration:line-through;text-decoration-color:#B7C7BF}
+  .mtag{font-size:11px;font-weight:700;border-radius:4px;padding:1px 5px;flex:0 0 auto}
+  .mtag.lead{color:var(--ink3);border:1px solid var(--line)}
+  .mtag.care{color:var(--signal);background:#FCE9EC}
+  .mitem.hide{display:none}
+  .mnone{padding:11px;font-size:13px;color:var(--go);font-weight:700;text-align:center}
+  .mfoot{margin:3px 2px 0;font-size:12px;color:var(--ink2);line-height:1.6}
+  .mfoot b{color:var(--signal)}
+
+
+
+
+  .tel{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--line);
+    padding-bottom:1px;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .tel:hover{color:var(--sync);border-bottom-color:var(--sync)}
+  #contact td{padding-top:11px;padding-bottom:11px}
+
+  /* 섹션 접기 */
+  .secth{margin:0}
+  .sechead{display:flex;align-items:flex-start;gap:10px;width:100%;padding:0;border:0;background:none;
+    font-family:inherit;color:inherit;cursor:pointer;text-align:left}
+  .sechead .st{flex:1}
+  .sechead .t{display:block;font-size:19px;font-weight:800;letter-spacing:-.02em}
+  .sechead .sub{display:block;margin:3px 0 0;font-size:13.5px;color:var(--ink2);font-weight:400}
+  .sechead i{font-style:normal;font-size:12px;color:var(--ink3);margin-top:7px;transition:transform .18s ease}
+  .sechead[aria-expanded=true] i{transform:rotate(180deg)}
+  .urgent .sechead .t{color:var(--signal)}
+  .urgent .sechead i{color:#B4757F}
+  .secbody{display:none;padding-top:14px}
+  section.open .secbody{display:block}
+
+  /* 점검표 그룹 접기 */
+  .grp>.ghead{display:flex;align-items:center;gap:9px;width:100%;background:var(--wash);
+    padding:11px 13px;border:0;font-family:inherit;color:var(--ink);cursor:pointer;text-align:left}
+  .grp>.ghead b{flex:1;font-size:14.5px;font-weight:800}
+  .grp>.ghead .prog{font-size:13px;font-weight:800;color:var(--go);font-variant-numeric:tabular-nums}
+  .grp>.ghead i{font-style:normal;font-size:11px;color:var(--ink3);transition:transform .18s ease}
+  .grp.open>.ghead i{transform:rotate(180deg)}
+  .grp>ul{display:none;border-top:1px solid var(--line)}
+  .grp.open>ul{display:block}
+
+  /* 층별 배치도 */
+  .fnote{margin:0 0 10px;font-size:12.5px;color:var(--ink2);line-height:1.6}
+  .fkey{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .fkey .k{font-size:11.5px;font-weight:700;border-radius:5px;padding:3px 8px;border:1px solid}
+  .floor{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line2)}
+  .floor:first-of-type{border-top:0}
+  .floor .fl{flex:0 0 34px;font-size:14px;font-weight:800;color:var(--ink);padding-top:6px}
+  .rmwrap{flex:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:7px}
+  .rm{border:1px solid;border-radius:8px;padding:8px 9px}
+  .rm b{display:block;font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+  .rm span{display:block;font-size:11px;margin-top:1px;opacity:.75}
+  .rm em{display:block;font-style:normal;font-size:12px;font-weight:700;margin-top:4px}
+  .rm.boy,.fkey .k.boy{background:#EAF1FA;border-color:#B6CCE6;color:#1B3D66}
+  .rm.girl,.fkey .k.girl{background:#FBECF1;border-color:#E8C0CE;color:#7A2B45}
+  .rm.staff,.fkey .k.staff{background:#EDEAF7;border-color:#C8C0E0;color:#3E3369}
+  .rm.off,.fkey .k.off{background:#F6F7F8;border-color:var(--line);color:var(--ink3)}
+
+  /* 인원 점검 기록 상자 */
+  .stampbox{border:1px solid #C6DEE7;background:var(--syncwash);border-radius:10px;
+    padding:12px 13px 4px;margin-bottom:14px}
+  .stampbox>b{display:block;font-size:14.5px;font-weight:800;color:#0B4E62}
+  .stampbox>p{margin:2px 0 8px;font-size:12.5px;color:#0B4E62}
+  .stampbox .carinfo{flex:1 0 100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;
+    margin:2px 0 2px 0;font-size:12.5px;color:#0B4E62;font-variant-numeric:tabular-nums}
+  .stampbox .carinfo .plate{font-weight:800;background:#fff;border:1px solid #A9CBD8;
+    border-radius:5px;padding:2px 7px;letter-spacing:.01em}
+  .stampbox .carinfo a{color:#0B4E62;font-weight:800;text-decoration:none;
+    border-bottom:1px solid #A9CBD8;padding-bottom:1px}
+  .stampbox .stamp{border-bottom-color:#C6DEE7}
+  .stampbox .stamp:last-child{border-bottom:0}
+
+  /* 좌석표 접기 */
+  .bus>.bhead{display:flex;align-items:center;gap:10px;width:100%;padding:10px 13px;
+    background:var(--ink);border:0;color:#fff;font-family:inherit;cursor:pointer;text-align:left}
+  .bus>.bhead .bt{flex:1}
+  .bus>.bhead b{display:block;font-size:14.5px;font-weight:800}
+  .bus>.bhead span span{display:block;font-size:12.5px;color:#B7C2D3;font-weight:500}
+  .bus>.bhead i{font-style:normal;font-size:11px;color:#B7C2D3;transition:transform .18s ease}
+  .bus.is-open>.bhead i{transform:rotate(180deg)}
+  .bus .seats{display:none}
+  .bus.is-open .seats{display:grid}
+
+  /* 호실 수정 */
+  .roomedit{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+  .roomedit .msg{flex:1;min-width:180px;font-size:12.5px;color:#0B4E62;font-weight:600}
+  .roomedit button{min-height:34px;padding:5px 11px;border:1px solid #A9CBD8;background:#fff;color:#0B4E62;
+    border-radius:7px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer}
+  .roomedit button:hover{background:#DCEDF3}
+  .roomin{width:76px;padding:6px 7px;border:1px solid var(--line);border-radius:6px;background:#fff;
+    font-family:inherit;font-size:13.5px;font-weight:700;color:var(--ink);text-align:center;
+    font-variant-numeric:tabular-nums}
+  .roomin:focus{outline:none;border-color:var(--sync);box-shadow:0 0 0 2px var(--syncwash)}
+  .roomin.changed{border-color:var(--sync);background:var(--syncwash);color:#0B4E62}
+  .roomin.num{width:52px}
+  .roomin.who{width:100%;min-width:190px;text-align:left;font-weight:600}
+  td.roomcell{white-space:nowrap}
+  td.roomcell .orig{display:block;font-size:11px;font-weight:700;color:var(--ink3);margin-top:3px}
+  td.roomcell .orig[hidden]{display:none}
+
+  /* 확정 필요 */
+  .flag{background:var(--ink);color:#fff}
+  .flag h2{color:#fff}
+  .flag .sub{color:#AEBACC}
+  .flag ul{list-style:none;margin:0;padding:0}
+  .flag li{border-top:1px solid #34415B;padding:12px 0;font-size:14px}
+  .flag li b{display:block;color:var(--hazard);font-weight:800;font-size:13px;margin-bottom:2px}
+  .flag li span{color:#D2D9E5}
+
+  .note{background:var(--syncwash);border:1px solid #C6DEE7;border-radius:9px;padding:11px 13px;
+    font-size:13.5px;color:#0B4E62;margin-bottom:12px}
+
+  footer{padding:22px 18px 44px;font-size:12.5px;color:var(--ink3);line-height:1.75}
+  footer b{color:var(--ink2)}
+
+  @media (max-width:430px){
+    .calls{grid-template-columns:1fr}
+    .board b{font-size:22px}
+    .seats{grid-template-columns:1fr 1fr 14px 1fr;gap:4px}
+    .seat{font-size:11px}
+    .tl li{grid-template-columns:56px 1fr}
+  }
+  @media print{
+    body{background:#fff}
+    header.top{position:static}
+    .navchips,.menubtn,.tabs,.share,.stamp button{display:none}
+    .wrap{border:0;max-width:none}
+    details .dbody{display:block !important}
+    .meal .mbody,.mcls .cbody{display:block !important}
+    .mtools{display:none}
+    .roomedit{display:none}
+    .secbody,.grp>ul{display:block !important}
+    .sechead i,.grp>.ghead i{display:none}
+    .bus .seats{display:grid !important}
+    .bus>.bhead i{display:none}
+    .roomin{border:0;padding:0;background:#fff;text-align:left}
+    .seatin{color:#000}
+    section{page-break-inside:avoid}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>2026 수학여행 인솔 교사 확인표</h1>
+  <p>용산초등학교 6학년 · 9월 16일(수)~18일(금) · 2박 3일 · 서울·대전</p>
+  <button type="button" class="menubtn" id="menubtn" aria-expanded="false" aria-controls="nav">
+    <b>목차 — 보고 싶은 항목으로 바로 가기</b><i>▼</i>
+  </button>
+  <nav class="navchips" id="nav" hidden>
+    <a href="#urgent">긴급 대응</a>
+    <a href="#check">점검표</a>
+    <a href="#schedule">일정 · 조식 확인</a>
+    <a href="#care">요양호 학생</a>
+    <a href="#bus">차량·좌석 · 인원 점검</a>
+    <a href="#room">숙소</a>
+    <a href="#duty">야간 근무</a>
+    <a href="#contact">비상연락망</a>
+  </nav>
+</header>
+
+<div class="share">
+  <div class="state" id="syncstate">확인한 내용은 이 휴대폰에만 저장됩니다.</div>
+  <button type="button" id="reset">체크 모두 지우기</button>
+</div>
+
+<div class="board">
+  <div><b>54</b><span>재적</span></div>
+  <div><b>53</b><span>참가 학생</span></div>
+  <div><b>8</b><span>인솔 교직원</span></div>
+  <div><b>13</b><span>요양호 학생</span></div>
+</div>
+
+<!-- 긴급 -->
+<section class="urgent" id="urgent">
+  <h2 class="secth"><button type="button" class="sechead" aria-expanded="false"><span class="st"><span class="t">긴급 상황이 생기면</span><span class="sub">학생 안전 확보를 먼저 하고, 그다음에 보고합니다.</span></span><i>▼</i></button></h2>
+  <div class="secbody">
+  <div class="calls">
+    <a href="tel:119"><b>화재·응급환자·구조</b><span>119</span></a>
+    <a href="tel:112"><b>학생 실종·범죄·교통사고</b><span>112</span></a>
+    <a href="tel:0558301541"><b>사천교육지원청 교육지원과</b><span>055-830-1541</span></a>
+    <a href="tel:0552681078"><b>도교육청 체육예술건강과</b><span>055-268-1078</span></a>
+  </div>
+  <ol class="chain">
+    <li>현장 인솔 교사가 학생 안전을 확보하고 인원을 확인합니다.</li>
+    <li>학년부장에게 알리고, 학년부장이 학교 담당자에게 보고합니다.</li>
+    <li>학교가 사천교육지원청에, 교육지원청이 도교육청에 보고합니다.</li>
+    <li>담임이 보호자에게 연락하고, 전체 보호자에게 안심 문자를 보냅니다.</li>
+  </ol>
+  </div>
+</section>
+
+<!-- 공동 점검표 -->
+<section id="check">
+  <h2 class="secth"><button type="button" class="sechead" aria-expanded="false"><span class="st"><span class="t">점검표</span><span class="sub">체크하면 시각이 함께 남고, 화면을 닫았다 열어도 그대로 있습니다. 선생님 각자 본인 것만 확인하시면 됩니다.</span></span><i>▼</i></button></h2>
+  <div class="secbody">
+
+  <div class="note" id="storagenote" hidden>
+    이 화면에서는 체크가 저장되지 않습니다. 화면을 새로 고치면 지워지니 인쇄해서 쓰시거나, 한 번에 확인하는 용도로만 사용해 주세요.
+  </div>
+
+  <div class="grp" data-group="g1">
+    <button type="button" class="ghead" aria-expanded="false"><b>출발 전 · 9/16 07:30 학교</b><span class="prog" data-prog="g1"></span><i>▼</i></button>
+    <ul>
+      <li><label><input type="checkbox" data-k="g1-1"><span>반별 학생 인원 점검, 불참 학생 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g1-2"><span>요양호 학생 개인 복용약 소지 확인(김해든 응급약품 포함)<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g1-3"><span>구급함, 위생봉투, 예비 마스크 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g1-4"><span>전 좌석 안전띠 설치·작동 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g1-5"><span>소화기, 비상탈출용 망치 위치 확인 후 학생에게 안내<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g1-6"><span>운전자 음주 여부 기록지 확인(행정실)<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g1-7"><span>비상연락망, 객실 배정표, 좌석표 소지<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g1-8"><span>보호자에게 출발 문자 발송<em></em></span></label></li>
+    </ul>
+  </div>
+
+  <div class="grp" data-group="g2">
+    <button type="button" class="ghead" aria-expanded="false"><b>차량에서 내리고 탈 때마다</b><span class="prog" data-prog="g2"></span><i>▼</i></button>
+    <ul>
+      <li><label><input type="checkbox" data-k="g2-1"><span>하차 전 차량 번호와 다음 출발 시각 안내<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g2-2"><span>하차 후 인원 점검<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g2-3"><span>승차 후 인원 점검, 옆자리 학생 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g2-4"><span>전 좌석 안전띠 착용 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g2-5"><span>차내 유실물 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g2-6"><span>휴게소에서는 보행로 이용, 후진 차량 주의 지도<em></em></span></label></li>
+    </ul>
+  </div>
+
+  <div class="grp" data-group="g3">
+    <button type="button" class="ghead" aria-expanded="false"><b>숙소 도착 후 · 하이서울유스호스텔</b><span class="prog" data-prog="g3"></span><i>▼</i></button>
+    <ul>
+      <li><label><input type="checkbox" data-k="g3-1"><span>객실 배정 후 호실별 인원 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g3-2"><span>비상구·대피로 확인 후 학생에게 안내<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g3-3"><span>베란다 난간, 창문 등 위험 요소 안내<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g3-4"><span>야간 근무자 위치와 연락 방법 안내<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g3-5"><span>개인 복용약 복용 확인, 건강 상태 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g3-6"><span>취침 전 객실별 인원 점검<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g3-7"><span>보호자에게 안심 문자 발송<em></em></span></label></li>
+    </ul>
+  </div>
+
+  <div class="grp" data-group="g4">
+    <button type="button" class="ghead" aria-expanded="false"><b>귀교 · 9/18</b><span class="prog" data-prog="g4"></span><i>▼</i></button>
+    <ul>
+      <li><label><input type="checkbox" data-k="g4-1"><span>숙소·과학관 유실물 최종 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g4-2"><span>출발 전 탑승 인원 점검<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g4-3"><span>학교 도착 후 버스 승하차 지도<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g4-4"><span>보호자 인계 및 전원 귀가 확인<em></em></span></label></li>
+      <li><label><input type="checkbox" data-k="g4-5"><span>도착 문자 발송<em></em></span></label></li>
+    </ul>
+  </div>
+
+  </div>
+</section>
+
+<!-- 일정 -->
+<section id="schedule">
+  <h2 class="secth"><button type="button" class="sechead" aria-expanded="false"><span class="st"><span class="t">일정</span><span class="sub">붉은 표시는 인원 점검이 꼭 필요한 시점입니다. 기상과 현지 사정에 따라 바뀔 수 있습니다.</span></span><i>▼</i></button></h2>
+  <div class="secbody">
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" aria-selected="true" data-day="d1">1일 차 9/16</button>
+    <button type="button" role="tab" aria-selected="false" data-day="d2">2일 차 9/17</button>
+    <button type="button" role="tab" aria-selected="false" data-day="d3">3일 차 9/18</button>
+  </div>
+
+  <div id="d1">
+    <ul class="tl">
+      <li><time>07:30</time><div><b>학교 집합·인원 점검</b><p>복용약 소지, 준비물 확인</p><em>인원 점검</em></div></li>
+      <li><time>08:00</time><div><b>학교 출발</b><p>안전띠, 소화기·망치 위치 안내</p></div></li>
+      <li><time>08:00<br>12:50</time><div><b>서울 이동</b><p>중간 20분 휴게, 하차 전 차량 번호·출발 시각 안내</p><em>휴게소 승하차 인원 점검</em></div></li>
+      <li><time>12:50<br>13:50</time><div><b>중식</b><p>보돌 미역 · 석쇠불고기 정식</p></div></li>
+      <li><time>13:50<br>14:00</time><div><b>입장권 배부·입장 준비</b><p>모둠 3~5명 편성, 집합 장소와 시각 안내</p></div></li>
+      <li><time>14:00<br>20:30</time><div><b>롯데월드 체험</b><p>석식은 밀 쿠폰 자율 식사. 알레르기 학생은 인솔 교사가 메뉴 확인</p><em>수시 인원 점검</em></div></li>
+      <li><time>20:30</time><div><b>집합</b><p>사전에 안내한 집합 장소에 모입니다. 넓고 복잡한 구조이므로 출발 전 장소와 시각을 반복해 지도합니다.</p><em>인원 점검</em></div></li>
+      <li><time>21:00<br>21:30</time><div><b>숙소 이동</b><p>승차 인원 점검, 유실물 확인</p><em>인원 점검</em></div></li>
+      <li><time>21:30<br>22:00</time><div><b>숙소 도착</b><p>방 배정, 대피로 안내, 생활 안전 지도</p><em>객실별 인원 점검</em></div></li>
+      <li><time>22:00</time><div><b>취침 준비·취침</b><p>22:00~24:00 야간 근무: 6-1, 6-2</p></div></li>
+    </ul>
+  </div>
+
+  <div id="d2" hidden>
+    <ul class="tl">
+      <li><time>07:00</time><div><b>기상</b><p>건강 상태 확인, 복용약 확인</p></div></li>
+      <li><time>07:20<br>08:00</time><div><b>조식</b><p>1층 식당. 용산초 단체를 위해 7:20에 문을 엽니다.</p><div class="meal" data-day="d2" data-label="9/17(목) 조식"></div></div></li>
+      <li><time>08:00<br>09:00</time><div><b>세면·학생 소집</b><p>객실 정리, 유실물 확인 후 <b>2층 복도</b>에 모입니다.</p><p>담임교사가 방장에게 카드키를 받아 모으고, 신민지 주무관이 프런트 데스크에 맡깁니다.</p><em>인원 점검</em><em>카드키 회수</em></div></li>
+      <li><time>09:00<br>09:20</time><div><b>KBS 이동</b><p>교통안전 지도</p></div></li>
+      <li><time>09:20<br>09:30</time><div><b>도착·기념사진</b></div></li>
+      <li><time>09:30<br>10:30</time><div><b>방송국 견학</b><p>1팀 09:30 / 2팀 09:45 출발</p></div></li>
+      <li><time>10:30<br>10:50</time><div><b>국회 이동</b><p>교통안전 지도</p><em>승하차 인원 점검</em></div></li>
+      <li><time>11:00<br>12:00</time><div><b>국회박물관·체험관 견학</b></div></li>
+      <li><time>12:00<br>12:30</time><div><b>국회의사당 산책·식당 이동</b></div></li>
+      <li><time>12:30<br>14:00</time><div><b>중식</b><p>국회의원회관 식당</p></div></li>
+      <li><time>14:00<br>15:00</time><div><b>국회 본회의장 관람</b></div></li>
+      <li><time>15:00<br>16:00</time><div><b>대학로 이동</b><p>교통안전 지도</p><em>승하차 인원 점검</em></div></li>
+      <li><time>16:00<br>17:30</time><div><b>연극 관람</b><p>내일은 내일에게. 입장 전 대피로·출입구 확인</p></div></li>
+      <li><time>17:30<br>18:00</time><div><b>식당 이동</b></div></li>
+      <li><time>18:00<br>19:00</time><div><b>석식</b><p>애슐리퀸즈 종각역점</p></div></li>
+      <li><time>19:00<br>20:00</time><div><b>종로서적</b><p>실내 자율 이동, 집합 장소·시각 재안내</p><em>수시 인원 점검</em></div></li>
+      <li><time>20:00<br>21:00</time><div><b>숙소 이동</b><em>승차 인원 점검</em></div></li>
+      <li><time>21:00<br>22:00</time><div><b>숙소 도착·개인 정비</b><em>객실별 인원 점검</em></div></li>
+      <li><time>22:00</time><div><b>취침</b><p>22:00~24:00 야간 근무: 주무관, 특수</p></div></li>
+    </ul>
+  </div>
+
+  <div id="d3" hidden>
+    <ul class="tl">
+      <li><time>07:00</time><div><b>기상</b><p>건강 상태 확인, 복용약 확인</p></div></li>
+      <li><time>07:15<br>08:00</time><div><b>조식</b><p>1층 식당</p><div class="meal" data-day="d3" data-label="9/18(금) 조식"></div></div></li>
+      <li><time>08:00<br>08:30</time><div><b>세면·짐 정리·학생 소집</b><p>객실 유실물 최종 확인 후 <b>1층 로비</b>에 모입니다.</p><p>담임교사가 방장에게 카드키를 받아 모으고, 신민지 주무관이 프런트에 반납합니다.</p><em>인원 점검</em><em>카드키 반납</em></div></li>
+      <li><time>08:30<br>12:30</time><div><b>대전 이동</b><p>중간 20분 휴게</p><em>휴게소 승하차 인원 점검</em></div></li>
+      <li><time>12:30<br>13:30</time><div><b>국립중앙과학관 창의나래관 체험</b><p>도착 직후 바로 입장합니다. 주차 후 곧장 이동해 주세요</p></div></li>
+      <li><time>13:30<br>14:30</time><div><b>중식</b><p>과학관 푸드코트</p></div></li>
+      <li><time>14:30<br>15:50</time><div><b>과학관 자율 관람</b><p>모둠 이동, 집합 장소·시각 안내</p><em>수시 인원 점검</em></div></li>
+      <li><time>15:50</time><div><b>학교로 출발</b><p>탑승 인원 점검, 유실물 최종 확인</p><em>인원 점검</em></div></li>
+      <li><time>19:00</time><div><b>학교 도착 예정·귀가 지도</b><p>승하차 지도, 보호자 인계, 도착 문자 발송</p><em>전원 귀가 확인 후 해산</em></div></li>
+    </ul>
+  </div>
+  </div>
+</section>
+
+<!-- 요양호 학생 -->
+<section id="care">
+  <h2 class="secth"><button type="button" class="sechead" aria-expanded="false"><span class="st"><span class="t">요양호 학생 13명</span><span class="sub">인솔 교직원 전체가 공유합니다. 증상이 보이면 보건교사에게 먼저 알립니다.</span></span><i>▼</i></button></h2>
+  <div class="secbody">
+
+  <div class="care top">
+    <b>김해든</b><i>6-2 · 1호차 7번 · 206호</i>
+    <p>선천성 복잡심장기형. 2차례 수술 후 추적 관찰 중입니다. 아스피린을 복용하고 있어 상처가 나면 지혈이 어렵습니다. 레니프릴정과 아스피린을 본인이 소지합니다. 놀이기구 이용과 장시간 보행은 본인 상태를 확인하고 조절해 주세요.</p>
+  </div>
+
+  <div class="care">
+    <b>송설아</b><i>6-3 · 3호차 11번 · 204호</i>
+    <p>홍시 알레르기. 입 주변에 두드러기가 생깁니다. 대체식 없이 감·홍시류를 먹지 않는 것으로 정했습니다. 후식과 뷔페에서 확인해 주세요.</p>
+  </div>
+  <div class="care">
+    <b>박선유</b><i>6-3 · 3호차 19번 · 211호</i>
+    <p>아토크 건조시럽에 다리 떨림, 항생제 세프트리악손에 호흡곤란 반응이 있었습니다. 임의로 약을 주지 않습니다.</p>
+  </div>
+  <div class="care">
+    <b>김현지</b><i>6-3 · 3호차 10번 · 204호</i>
+    <p>꽃가루 알레르기. 씨투스 복용 중입니다.</p>
+  </div>
+
+  <details>
+    <summary>그 밖의 요양호 학생 9명</summary>
+    <div class="dbody">
+      <div class="tblwrap">
+        <table>
+          <thead><tr><th>학급</th><th>이름</th><th>내용</th></tr></thead>
+          <tbody>
+            <tr><td>6-1</td><td>김민솔</td><td>아토피(먼지 많으면 눈 따갑고 피부 악화), 알레르기성 비염</td></tr>
+            <tr><td>6-1</td><td>박채아</td><td>양안 시력차, 빛에 눈부심 호소, 치료 약물 부작용으로 동공 확장</td></tr>
+            <tr><td>6-1</td><td>서지민</td><td>아토피. 땀을 많이 흘리면 발진, 연고 치료</td></tr>
+            <tr><td>6-1</td><td>이진혁</td><td>시력장애, 성장호르몬 치료 중</td></tr>
+            <tr><td>6-2</td><td>김보민</td><td>지방종 제거술 3회, 현재 완치</td></tr>
+            <tr><td>6-2</td><td>박정민</td><td>아토피 피부염, 알레르기성 비염. 심할 때만 약 처방</td></tr>
+            <tr><td>6-2</td><td>송하윤</td><td>간헐적 외사시(정기 검진), 알레르기성 비염 약물 치료 중</td></tr>
+            <tr><td>6-3</td><td>고다혜</td><td>선천성 안구진탕. 정기 검진 및 치료 중</td></tr>
+            <tr><td>6-3</td><td>김성준</td><td>서혜부탈장 수술 후 완치. 나눔반 학생, 특수교사가 별도 관리</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <div class="note" style="margin-top:12px">
+    아토피·비염 학생이 많습니다. 미세먼지가 나쁨 이상이면 마스크를 먼저 챙기고, 실외 활동 시간을 줄여 주세요.
+  </div>
+  </div>
+</section>
+
+<!-- 차량 -->
+<section id="bus">
+  <h2 class="secth"><button type="button" class="sechead" aria-expanded="false"><span class="st"><span class="t">차량 배정 및 좌석</span><span class="sub">2026. 9. 7. 수정된 좌석 배정입니다. 맨 앞·맨 뒷좌석에는 학생을 태우지 않습니다.</span></span><i>▼</i></button></h2>
+  <div class="secbody">
+
+  <div class="roomedit">
+    <div class="msg" id="seatmsg">좌석의 이름을 눌러 바로 고칠 수 있습니다.</div>
+    <button type="button" id="seatreset">좌석 원래대로</button>
+  </div>
+
+  <div class="stampbox">
+    <b>호차별 인원 점검 기록</b>
+    <p>누를 때마다 시각이 갱신됩니다. 이동할 때마다 다시 눌러 주세요.</p>
+    <div id="stamps"></div>
+  </div>
+
+  <div class="bus">
+    <button type="button" class="bhead" aria-expanded="false"><span class="bt"><b>1호차 · 6학년 2반</b><span>학생 18명 · 담임 박문영 · 안전요원 김시영 교감·신민지 주무관·한수호 선생님 · 차량 경남76바2503</span></span><i>▼</i></button>
+    <div class="seats">
+      <div class="seat staff"><input class="seatin" type="text" maxlength="12" data-seat="b1s1" data-def="김시영 교감" value="김시영 교감" aria-label="1번 좌석 교직원"><i>1</i></div><div class="seat staff"><input class="seatin" type="text" maxlength="12" data-seat="b1s2" data-def="한수호 선생님" value="한수호 선생님" aria-label="2번 좌석 교직원"><i>2</i></div><div class="aisle"></div><div class="seat staff"><input class="seatin" type="text" maxlength="12" data-seat="b1s3" data-def="신민지 주무관" value="신민지 주무관" aria-label="3번 좌석 교직원"><i>3</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s4" data-def="김도영" value="김도영" aria-label="4번 좌석"><i>4</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s5" data-def="김보민" value="김보민" aria-label="5번 좌석"><i>5</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s6" data-def="송하윤" value="송하윤" aria-label="6번 좌석"><i>6</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s7" data-def="김해든" value="김해든" aria-label="7번 좌석"><i>7</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s8" data-def="최다인" value="최다인" aria-label="8번 좌석"><i>8</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s9" data-def="이수미" value="이수미" aria-label="9번 좌석"><i>9</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s10" data-def="황서준" value="황서준" aria-label="10번 좌석"><i>10</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s11" data-def="박예준" value="박예준" aria-label="11번 좌석"><i>11</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s12" data-def="이가원" value="이가원" aria-label="12번 좌석"><i>12</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s13" data-def="이준서" value="이준서" aria-label="13번 좌석"><i>13</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s14" data-def="박정민" value="박정민" aria-label="14번 좌석"><i>14</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s15" data-def="주소리" value="주소리" aria-label="15번 좌석"><i>15</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s16" data-def="김아현" value="김아현" aria-label="16번 좌석"><i>16</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s17" data-def="서원우" value="서원우" aria-label="17번 좌석"><i>17</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s18" data-def="강해빈" value="강해빈" aria-label="18번 좌석"><i>18</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s19" data-def="장윤호" value="장윤호" aria-label="19번 좌석"><i>19</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s20" data-def="손영빈" value="손영빈" aria-label="20번 좌석"><i>20</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b1s21" data-def="김윤이" value="김윤이" aria-label="21번 좌석"><i>21</i></div>
+      <div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b1s22" data-def="비움" value="비움" aria-label="22번 좌석"><i>22</i></div><div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b1s23" data-def="비움" value="비움" aria-label="23번 좌석"><i>23</i></div><div class="aisle"></div><div class="seat staff"><input class="seatin" type="text" maxlength="12" data-seat="b1s24" data-def="박문영" value="박문영" aria-label="24번 좌석 교직원"><i>24</i></div>
+    </div>
+  </div>
+
+  <div class="bus">
+    <button type="button" class="bhead" aria-expanded="false"><span class="bt"><b>2호차 · 6학년 1반</b><span>학생 17명 · 불참 1명 · 담임 박주연 · 안전요원 전담 · 차량 경남72바7225</span></span><i>▼</i></button>
+    <div class="seats">
+      <div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b2s1" data-def="비움" value="비움" aria-label="1번 좌석"><i>1</i></div><div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b2s2" data-def="비움" value="비움" aria-label="2번 좌석"><i>2</i></div><div class="aisle"></div><div class="seat staff"><input class="seatin" type="text" maxlength="12" data-seat="b2s3" data-def="교직원" value="교직원" aria-label="3번 좌석 교직원"><i>3</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s4" data-def="윤소은" value="윤소은" aria-label="4번 좌석"><i>4</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s5" data-def="문서원" value="문서원" aria-label="5번 좌석"><i>5</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s6" data-def="이찬" value="이찬" aria-label="6번 좌석"><i>6</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s7" data-def="이연서" value="이연서" aria-label="7번 좌석"><i>7</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s8" data-def="박채아" value="박채아" aria-label="8번 좌석"><i>8</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s9" data-def="허남우" value="허남우" aria-label="9번 좌석"><i>9</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s10" data-def="김민솔" value="김민솔" aria-label="10번 좌석"><i>10</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s11" data-def="도현서" value="도현서" aria-label="11번 좌석"><i>11</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s12" data-def="권현빈" value="권현빈" aria-label="12번 좌석"><i>12</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s13" data-def="김가희" value="김가희" aria-label="13번 좌석"><i>13</i></div><div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b2s14" data-def="빈자리" value="빈자리" aria-label="14번 좌석"><i>14</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s15" data-def="김지온" value="김지온" aria-label="15번 좌석"><i>15</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s16" data-def="강다현" value="강다현" aria-label="16번 좌석"><i>16</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s17" data-def="김다온" value="김다온" aria-label="17번 좌석"><i>17</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s18" data-def="전주호" value="전주호" aria-label="18번 좌석"><i>18</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s19" data-def="정수호" value="정수호" aria-label="19번 좌석"><i>19</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s20" data-def="서지민" value="서지민" aria-label="20번 좌석"><i>20</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b2s21" data-def="이진혁" value="이진혁" aria-label="21번 좌석"><i>21</i></div>
+      <div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b2s22" data-def="비움" value="비움" aria-label="22번 좌석"><i>22</i></div><div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b2s23" data-def="비움" value="비움" aria-label="23번 좌석"><i>23</i></div><div class="aisle"></div><div class="seat staff"><input class="seatin" type="text" maxlength="12" data-seat="b2s24" data-def="교직원" value="교직원" aria-label="24번 좌석 교직원"><i>24</i></div>
+    </div>
+  </div>
+
+  <div class="bus">
+    <button type="button" class="bhead" aria-expanded="false"><span class="bt"><b>3호차 · 6학년 3반</b><span>학생 18명 · 담임 김영숙 · 안전요원 특수 · 차량 경남76바1305</span></span><i>▼</i></button>
+    <div class="seats">
+      <div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b3s1" data-def="비움" value="비움" aria-label="1번 좌석"><i>1</i></div><div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b3s2" data-def="비움" value="비움" aria-label="2번 좌석"><i>2</i></div><div class="aisle"></div><div class="seat staff"><input class="seatin" type="text" maxlength="12" data-seat="b3s3" data-def="교직원" value="교직원" aria-label="3번 좌석 교직원"><i>3</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s4" data-def="홍채영" value="홍채영" aria-label="4번 좌석"><i>4</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s5" data-def="김경원" value="김경원" aria-label="5번 좌석"><i>5</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s6" data-def="김성준" value="김성준" aria-label="6번 좌석"><i>6</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s7" data-def="고다혜" value="고다혜" aria-label="7번 좌석"><i>7</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s8" data-def="박지민" value="박지민" aria-label="8번 좌석"><i>8</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s9" data-def="윤예나" value="윤예나" aria-label="9번 좌석"><i>9</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s10" data-def="김현지" value="김현지" aria-label="10번 좌석"><i>10</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s11" data-def="송설아" value="송설아" aria-label="11번 좌석"><i>11</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s12" data-def="이수은" value="이수은" aria-label="12번 좌석"><i>12</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s13" data-def="윤재원" value="윤재원" aria-label="13번 좌석"><i>13</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s14" data-def="이재영" value="이재영" aria-label="14번 좌석"><i>14</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s15" data-def="안도율" value="안도율" aria-label="15번 좌석"><i>15</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s16" data-def="강우빈" value="강우빈" aria-label="16번 좌석"><i>16</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s17" data-def="박시우" value="박시우" aria-label="17번 좌석"><i>17</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s18" data-def="김주원" value="김주원" aria-label="18번 좌석"><i>18</i></div>
+      <div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s19" data-def="박선유" value="박선유" aria-label="19번 좌석"><i>19</i></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s20" data-def="송승우" value="송승우" aria-label="20번 좌석"><i>20</i></div><div class="aisle"></div><div class="seat"><input class="seatin" type="text" maxlength="12" data-seat="b3s21" data-def="조 민" value="조 민" aria-label="21번 좌석"><i>21</i></div>
+      <div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b3s22" data-def="비움" value="비움" aria-label="22번 좌석"><i>22</i></div><div class="seat empty"><input class="seatin" type="text" maxlength="12" data-seat="b3s23" data-def="비움" value="비움" aria-label="23번 좌석"><i>23</i></div><div class="aisle"></div><div class="seat staff"><input class="seatin" type="text" maxlength="12" data-seat="b3s24" data-def="교직원" value="교직원" aria-label="24번 좌석 교직원"><i>24</i></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- 숙소 -->
+<section id="room">
+  <h2 class="secth"><button type="button" class="sechead" aria-expanded="false"><span class="st"><span class="t">숙소 배정</span><span class="sub">하이서울유스호스텔. 호실은 숙소 사정에 따라 바뀔 수 있습니다.</span></span><i>▼</i></button></h2>
+  <div class="secbody">
+  <div class="roomedit">
+    <div class="msg" id="roommsg">호실과 대상 칸을 눌러 바로 고칠 수 있습니다. 고친 내용은 이 휴대폰에 저장됩니다.</div>
+    <button type="button" id="roomreset">숙소 배정 원래대로</button>
+  </div>
+
+  <details open>
+    <summary>6학년 1반</summary>
+    <div class="dbody"><div class="tblwrap"><table>
+      <thead><tr><th>호실</th><th>구분</th><th>명단</th></tr></thead>
+      <tbody>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="m5" data-def="620" value="620" aria-label="호실 번호"><span class="orig" hidden></span></td><td>남</td><td><input class="roomin who" type="text" maxlength="90" data-room="m5-s" data-def="이찬, 서지민, 이진혁, 허남우, 김지온, 전주호, 권현빈, 정수호" value="이찬, 서지민, 이진혁, 허남우, 김지온, 전주호, 권현빈, 정수호" aria-label="명단"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="f1" data-def="208" value="208" aria-label="호실 번호"><span class="orig" hidden></span></td><td>여</td><td><input class="roomin who" type="text" maxlength="90" data-room="f1-s" data-def="강다현, 김다온, 김민솔" value="강다현, 김다온, 김민솔" aria-label="명단"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="f4" data-def="621" value="621" aria-label="호실 번호"><span class="orig" hidden></span></td><td>여</td><td><input class="roomin who" type="text" maxlength="90" data-room="f4-s" data-def="박채아, 이연서, 윤소은, 김가희, 도현서, 문서원" value="박채아, 이연서, 윤소은, 김가희, 도현서, 문서원" aria-label="명단"></td></tr>
+      </tbody>
+    </table></div></div>
+  </details>
+
+  <details>
+    <summary>6학년 2반</summary>
+    <div class="dbody"><div class="tblwrap"><table>
+      <thead><tr><th>호실</th><th>구분</th><th>명단</th></tr></thead>
+      <tbody>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="m2" data-def="210" value="210" aria-label="호실 번호"><span class="orig" hidden></span></td><td>남</td><td><input class="roomin who" type="text" maxlength="90" data-room="m2-s" data-def="박예준, 손영빈, 장윤호, 황서준" value="박예준, 손영빈, 장윤호, 황서준" aria-label="명단"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="m4" data-def="723" value="723" aria-label="호실 번호"><span class="orig" hidden></span></td><td>남</td><td><input class="roomin who" type="text" maxlength="90" data-room="m4-s" data-def="김보민, 박정민, 서원우, 이준서, 김도영" value="김보민, 박정민, 서원우, 이준서, 김도영" aria-label="명단"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="f2" data-def="206" value="206" aria-label="호실 번호"><span class="orig" hidden></span></td><td>여</td><td><input class="roomin who" type="text" maxlength="90" data-room="f2-s" data-def="김해든, 김윤이, 최다인" value="김해든, 김윤이, 최다인" aria-label="명단"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="f5" data-def="623" value="623" aria-label="호실 번호"><span class="orig" hidden></span></td><td>여</td><td><input class="roomin who" type="text" maxlength="90" data-room="f5-s" data-def="강해빈, 김아현, 송하윤, 이가원, 이수미, 주소리" value="강해빈, 김아현, 송하윤, 이가원, 이수미, 주소리" aria-label="명단"></td></tr>
+      </tbody>
+    </table></div></div>
+  </details>
+
+  <details>
+    <summary>6학년 3반</summary>
+    <div class="dbody"><div class="tblwrap"><table>
+      <thead><tr><th>호실</th><th>구분</th><th>명단</th></tr></thead>
+      <tbody>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="m1" data-def="211" value="211" aria-label="호실 번호"><span class="orig" hidden></span></td><td>남</td><td><input class="roomin who" type="text" maxlength="90" data-room="m1-s" data-def="박선유, 송승우, 조민" value="박선유, 송승우, 조민" aria-label="명단"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="m3" data-def="721" value="721" aria-label="호실 번호"><span class="orig" hidden></span></td><td>남</td><td><input class="roomin who" type="text" maxlength="90" data-room="m3-s" data-def="강우빈, 박시우, 안도율, 윤재원, 이재영, 김주원" value="강우빈, 박시우, 안도율, 윤재원, 이재영, 김주원" aria-label="명단"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="f3" data-def="204" value="204" aria-label="호실 번호"><span class="orig" hidden></span></td><td>여</td><td><input class="roomin who" type="text" maxlength="90" data-room="f3-s" data-def="김현지, 송설아, 이수은" value="김현지, 송설아, 이수은" aria-label="명단"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="f6" data-def="523" value="523" aria-label="호실 번호"><span class="orig" hidden></span></td><td>여</td><td><input class="roomin who" type="text" maxlength="90" data-room="f6-s" data-def="고다혜, 김경원, 박지민, 윤예나, 홍채영" value="고다혜, 김경원, 박지민, 윤예나, 홍채영" aria-label="명단"></td></tr>
+      </tbody>
+    </table></div>
+      <p class="fnote" style="margin:8px 0 0">김성준 학생은 521호에서 교직원과 함께 지냅니다.</p></div>
+  </details>
+
+  <details>
+    <summary>교직원</summary>
+    <div class="dbody"><div class="tblwrap"><table>
+      <thead><tr><th>호실</th><th>인원</th><th>대상</th></tr></thead>
+      <tbody>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="t1" data-def="702" value="702" aria-label="호실 번호"><span class="orig" hidden></span></td><td><input class="roomin num" type="text" inputmode="numeric" maxlength="2" data-room="t1-n" data-def="1" value="1" aria-label="인원"></td><td><input class="roomin who" type="text" maxlength="40" data-room="t1-w" data-def="교감" value="교감" aria-label="대상"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="t2" data-def="521" value="521" aria-label="호실 번호"><span class="orig" hidden></span></td><td><input class="roomin num" type="text" inputmode="numeric" maxlength="2" data-room="t2-n" data-def="3" value="3" aria-label="인원"></td><td><input class="roomin who" type="text" maxlength="40" data-room="t2-w" data-def="6-1 담임, 전담교사, 특수학생(김성준)" value="6-1 담임, 전담교사, 특수학생(김성준)" aria-label="대상"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="t3" data-def="720" value="720" aria-label="호실 번호"><span class="orig" hidden></span></td><td><input class="roomin num" type="text" inputmode="numeric" maxlength="2" data-room="t3-n" data-def="2" value="2" aria-label="인원"></td><td><input class="roomin who" type="text" maxlength="40" data-room="t3-w" data-def="6-3 담임, 6-2 담임" value="6-3 담임, 6-2 담임" aria-label="대상"></td></tr>
+        <tr><td class="roomcell"><input class="roomin" type="text" inputmode="numeric" maxlength="6" data-room="t4" data-def="722" value="722" aria-label="호실 번호"><span class="orig" hidden></span></td><td><input class="roomin num" type="text" inputmode="numeric" maxlength="2" data-room="t4-n" data-def="3" value="3" aria-label="인원"></td><td><input class="roomin who" type="text" maxlength="40" data-room="t4-w" data-def="특수교사, 보건교사, 주무관" value="특수교사, 보건교사, 주무관" aria-label="대상"></td></tr>
+      </tbody>
+    </table></div></div>
+  </details>
+
+
+  <details>
+    <summary>층별 위치</summary>
+    <div class="dbody">
+      <p class="fnote">하이서울유스호스텔 객실 배치도 기준입니다. 엘리베이터 2기가 있고, 계단은 동편 엘리베이터 옆에 있습니다. 호실 번호를 고치셔도 이 배치도는 숙소 원래 도면 그대로 표시됩니다.</p>
+      <div class="fkey">
+        <span class="k boy">남학생</span><span class="k girl">여학생</span>
+        <span class="k staff">교직원</span><span class="k off">미사용</span>
+      </div>
+      <div class="floor"><div class="fl">7F</div><div class="rmwrap"><div class="rm staff"><b>702</b><span>싱글 · 1인 침대</span><em>교감</em></div><div class="rm staff"><b>720</b><span>스위트 · 4인 침대</span><em>교직원 2명</em></div><div class="rm boy"><b>721</b><span>패밀리 콘도 · 6인 온돌</span><em>남 6명 · 6-3</em></div><div class="rm staff"><b>722</b><span>스위트 · 4인 침대</span><em>교직원 3명</em></div><div class="rm boy"><b>723</b><span>패밀리 콘도 · 6인 온돌</span><em>남 4명 · 6-2</em></div></div></div>
+      <div class="floor"><div class="fl">6F</div><div class="rmwrap"><div class="rm boy"><b>620</b><span>패밀리 디럭스 · 8인 온돌</span><em>남 8명 · 6-1</em></div><div class="rm girl"><b>621</b><span>패밀리 콘도 · 6인 온돌</span><em>여 6명 · 6-1</em></div><div class="rm off"><b>622</b><span>패밀리 디럭스 · 8인 온돌</span><em>미사용</em></div><div class="rm girl"><b>623</b><span>패밀리 콘도 · 6인 온돌</span><em>여 6명 · 6-2</em></div></div></div>
+      <div class="floor"><div class="fl">5F</div><div class="rmwrap"><div class="rm off"><b>520</b><span>도미토리 · 10인 침대</span><em>미사용</em></div><div class="rm staff"><b>521</b><span>패밀리 콘도 · 6인 온돌</span><em>교직원 2명 · 김성준</em></div><div class="rm off"><b>522</b><span>도미토리 · 10인 침대</span><em>미사용</em></div><div class="rm girl"><b>523</b><span>패밀리 콘도 · 6인 온돌</span><em>여 5명 · 6-3</em></div></div></div>
+      <div class="floor"><div class="fl">2F</div><div class="rmwrap"><div class="rm girl"><b>204</b><span>패밀리 플러스 · 4인 침대</span><em>여 3명 · 6-3</em></div><div class="rm girl"><b>206</b><span>패밀리 플러스 · 4인 침대</span><em>여 3명 · 6-2</em></div><div class="rm girl"><b>208</b><span>패밀리 플러스 · 4인 침대</span><em>여 3명 · 6-1</em></div><div class="rm boy"><b>210</b><span>패밀리 플러스 · 4인 침대</span><em>남 4명 · 6-2</em></div><div class="rm boy"><b>211</b><span>패밀리 플러스 · 4인 침대</span><em>남 3명 · 6-3</em></div></div></div>
+      <div class="note" style="margin-top:12px">
+        학생이 2층·5층·6층·7층에 나뉘어 있습니다. <b>2층과 6층에는 교직원 객실이 없습니다.</b>
+        2층 5개 방 16명, 6층 3개 방 20명은 층에 교직원이 없으니 야간 순찰 동선을 미리 정해 주세요.
+      </div>
+    </div>
+  </details>
+
+  <div class="note">6-1 17명, 6-2 18명, 6-3 18명. 남학생 26명, 여학생 26명이며 특수학생 김성준은 521호에서 교직원과 함께 지냅니다.</div>
+  </div>
+</section>
+
+<!-- 야간 근무 -->
+<section id="duty">
+  <h2 class="secth"><button type="button" class="sechead" aria-expanded="false"><span class="st"><span class="t">야간 근무조</span><span class="sub">취침 전에는 전 교원이, 취침 후에는 담당 교직원이 순찰합니다. 기상(06:00) 이후에는 사제 동행합니다.</span></span><i>▼</i></button></h2>
+  <div class="secbody">
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>날짜</th><th>시간</th><th>근무자</th><th>지도 내용</th></tr></thead>
+      <tbody>
+        <tr><td>9/16(수)</td><td>16:30~22:00</td><td>전 교직원</td><td>놀이시설 안전 이용 지도, 교통안전 지도</td></tr>
+        <tr><td></td><td>22:00~24:00</td><td>6-1, 6-2</td><td>개인위생, 취침 지도, 야간순찰</td></tr>
+        <tr><td>9/17(목)</td><td>00:00~02:00</td><td>주무관, 6-3</td><td>야간순찰 및 안전 생활 지도</td></tr>
+        <tr><td></td><td>02:00~04:00</td><td>보건, 특수</td><td>야간순찰 및 안전 생활 지도</td></tr>
+        <tr><td></td><td>04:00~06:00</td><td>전담, 교감</td><td>야간순찰 및 안전 생활 지도</td></tr>
+        <tr><td></td><td>06:00~08:30</td><td>전 교원</td><td>순찰, 건강 상태 확인, 급식 지도</td></tr>
+        <tr><td></td><td>16:30~22:00</td><td>전 교직원</td><td>식사 지도, 개인위생, 건강 상태 확인</td></tr>
+        <tr><td></td><td>22:00~24:00</td><td>주무관, 특수</td><td>개인위생, 야간순찰</td></tr>
+        <tr><td>9/18(금)</td><td>00:00~02:00</td><td>전담, 교감</td><td>야간순찰 및 안전 생활 지도</td></tr>
+        <tr><td></td><td>02:00~04:00</td><td>6-3, 보건</td><td>야간순찰 및 안전 생활 지도</td></tr>
+        <tr><td></td><td>04:00~06:00</td><td>6-1, 6-2</td><td>야간순찰 및 안전 생활 지도</td></tr>
+        <tr><td></td><td>06:00~08:30</td><td>전 교원</td><td>순찰, 건강 상태 확인, 급식 지도</td></tr>
+        <tr><td></td><td>16:30~19:00</td><td>전 교직원</td><td>버스 승하차 지도 및 하교 지도</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="note">계획서 원문의 요일 표기(월·화·수)를 실제 요일(수·목·금)로 맞추고, 16:30~22:00 지도 내용을 일정에 맞게 바로잡았습니다. 3일 차 시간외 근무는 16:30~19:00으로 수정되었습니다.</div>
+  </div>
+</section>
+
+<!-- 비상연락망 -->
+<section id="contact">
+  <h2 class="secth"><button type="button" class="sechead" aria-expanded="false"><span class="st"><span class="t">학급별 비상연락망</span><span class="sub">(C)는 조장입니다. 학생 연락이 안 되면 보호자에게 연락합니다.</span></span><i>▼</i></button></h2>
+  <div class="secbody">
+
+  <details>
+    <summary>6학년 1반</summary>
+    <div class="dbody"><div class="tblwrap"><table>
+      <thead><tr><th>조</th><th>이름</th><th>학생</th><th>보호자</th></tr></thead>
+      <tbody>
+        <tr><td>1(남)</td><td>김지온(C)</td><td><a class="tel" href="tel:01064145156">010-6414-5156</a></td><td><a class="tel" href="tel:01041425156">010-4142-5156</a></td></tr>
+        <tr><td></td><td>전주호</td><td><a class="tel" href="tel:01038653764">010-3865-3764</a></td><td><a class="tel" href="tel:01085333764">010-8533-3764</a></td></tr>
+        <tr><td></td><td>허남우</td><td><a class="tel" href="tel:01047073615">010-4707-3615</a></td><td><a class="tel" href="tel:01054013615">010-5401-3615</a></td></tr>
+        <tr><td></td><td>이진혁</td><td><a class="tel" href="tel:01025637996">010-2563-7996</a></td><td><a class="tel" href="tel:01081084556">010-8108-4556</a></td></tr>
+        <tr><td>2(남)</td><td>서지민(C)</td><td><a class="tel" href="tel:01026886109">010-2688-6109</a></td><td><a class="tel" href="tel:01076006109">010-7600-6109</a></td></tr>
+        <tr><td></td><td>권현빈</td><td><a class="tel" href="tel:01095888207">010-9588-8207</a></td><td><a class="tel" href="tel:01055068207">010-5506-8207</a></td></tr>
+        <tr><td></td><td>정수호</td><td><a class="tel" href="tel:01043293890">010-4329-3890</a></td><td><a class="tel" href="tel:01097711257">010-9771-1257</a></td></tr>
+        <tr><td></td><td>이찬</td><td><a class="tel" href="tel:01038588720">010-3858-8720</a></td><td><a class="tel" href="tel:01058110527">010-5811-0527</a></td></tr>
+        <tr><td>3(여)</td><td>박채아</td><td><a class="tel" href="tel:01043951519">010-4395-1519</a></td><td><a class="tel" href="tel:01099281519">010-9928-1519</a></td></tr>
+        <tr><td></td><td>도현서</td><td><a class="tel" href="tel:01082170819">010-8217-0819</a></td><td><a class="tel" href="tel:01065120040">010-6512-0040</a></td></tr>
+        <tr><td></td><td>이연서(C)</td><td><a class="tel" href="tel:01024289047">010-2428-9047</a></td><td><a class="tel" href="tel:01054079047">010-5407-9047</a></td></tr>
+        <tr><td>4(여)</td><td>강다현</td><td><a class="tel" href="tel:01050322531">010-5032-2531</a></td><td><a class="tel" href="tel:01064352531">010-6435-2531</a></td></tr>
+        <tr><td></td><td>김다온(C)</td><td><a class="tel" href="tel:01076634298">010-7663-4298</a></td><td><a class="tel" href="tel:01082464298">010-8246-4298</a></td></tr>
+        <tr><td></td><td>김민솔</td><td><a class="tel" href="tel:01075203661">010-7520-3661</a></td><td><a class="tel" href="tel:01074903661">010-7490-3661</a></td></tr>
+        <tr><td>5(여)</td><td>윤소은</td><td><a class="tel" href="tel:01056307251">010-5630-7251</a></td><td><a class="tel" href="tel:01027557251">010-2755-7251</a></td></tr>
+        <tr><td></td><td>김가희</td><td><a class="tel" href="tel:01049190348">010-4919-0348</a></td><td><a class="tel" href="tel:01081190348">010-8119-0348</a></td></tr>
+        <tr><td></td><td>문서원(C)</td><td><a class="tel" href="tel:01093713027">010-9371-3027</a></td><td><a class="tel" href="tel:01092553027">010-9255-3027</a></td></tr>
+      </tbody>
+    </table></div></div>
+  </details>
+
+  <details>
+    <summary>6학년 2반</summary>
+    <div class="dbody"><div class="tblwrap"><table>
+      <thead><tr><th>조</th><th>이름</th><th>학생</th><th>보호자</th></tr></thead>
+      <tbody>
+        <tr><td>1(남)</td><td>김보민(C)</td><td><a class="tel" href="tel:01057379261">010-5737-9261</a></td><td><a class="tel" href="tel:01090389261">010-9038-9261</a></td></tr>
+        <tr><td></td><td>김도영</td><td><a class="tel" href="tel:01079264208">010-7926-4208</a></td><td><a class="tel" href="tel:01067804208">010-6780-4208</a></td></tr>
+        <tr><td></td><td>박정민</td><td><a class="tel" href="tel:01040224837">010-4022-4837</a></td><td><a class="tel" href="tel:01082661695">010-8266-1695</a></td></tr>
+        <tr><td></td><td>이준서</td><td><a class="tel" href="tel:01030686657">010-3068-6657</a></td><td><a class="tel" href="tel:01047686657">010-4768-6657</a></td></tr>
+        <tr><td>2(남)</td><td>장윤호(C)</td><td><a class="tel" href="tel:01054027303">010-5402-7303</a></td><td><a class="tel" href="tel:01054627303">010-5462-7303</a></td></tr>
+        <tr><td></td><td>박예준</td><td>없음 · 보호자 연락</td><td><a class="tel" href="tel:01089591083">010-8959-1083</a></td></tr>
+        <tr><td></td><td>손영빈</td><td><a class="tel" href="tel:01042034493">010-4203-4493</a></td><td><a class="tel" href="tel:01085314493">010-8531-4493</a></td></tr>
+        <tr><td></td><td>황서준</td><td><a class="tel" href="tel:01048253609">010-4825-3609</a></td><td><a class="tel" href="tel:01020143609">010-2014-3609</a></td></tr>
+        <tr><td></td><td>서원우</td><td><a class="tel" href="tel:01080225480">010-8022-5480</a></td><td><a class="tel" href="tel:01085157573">010-8515-7573</a></td></tr>
+        <tr><td>3(여)</td><td>이가원(C)</td><td><a class="tel" href="tel:01087325792">010-8732-5792</a></td><td><a class="tel" href="tel:01066855792">010-6685-5792</a></td></tr>
+        <tr><td></td><td>강해빈</td><td><a class="tel" href="tel:01064757257">010-6475-7257</a></td><td><a class="tel" href="tel:01064857257">010-6485-7257</a></td></tr>
+        <tr><td></td><td>김윤이</td><td><a class="tel" href="tel:01096782662">010-9678-2662</a></td><td><a class="tel" href="tel:01035629687">010-3562-9687</a></td></tr>
+        <tr><td></td><td>이수미</td><td><a class="tel" href="tel:01075083055">010-7508-3055</a></td><td><a class="tel" href="tel:01098688059">010-9868-8059</a></td></tr>
+        <tr><td></td><td>주소리</td><td><a class="tel" href="tel:01099713268">010-9971-3268</a></td><td><a class="tel" href="tel:01025992456">010-2599-2456</a></td></tr>
+        <tr><td>4(여)</td><td>최다인(C)</td><td><a class="tel" href="tel:01094230850">010-9423-0850</a></td><td><a class="tel" href="tel:01045653113">010-4565-3113</a></td></tr>
+        <tr><td></td><td>김아현</td><td><a class="tel" href="tel:01088510359">010-8851-0359</a></td><td><a class="tel" href="tel:01022070359">010-2207-0359</a></td></tr>
+        <tr><td></td><td>김해든</td><td><a class="tel" href="tel:01050860112">010-5086-0112</a></td><td><a class="tel" href="tel:01071641102">010-7164-1102</a></td></tr>
+        <tr><td></td><td>송하윤</td><td><a class="tel" href="tel:01025995514">010-2599-5514</a></td><td><a class="tel" href="tel:01099365514">010-9936-5514</a></td></tr>
+      </tbody>
+    </table></div></div>
+  </details>
+
+  <details>
+    <summary>6학년 3반</summary>
+    <div class="dbody"><div class="tblwrap"><table>
+      <thead><tr><th>조</th><th>이름</th><th>학생</th><th>보호자</th></tr></thead>
+      <tbody>
+        <tr><td>1(남)</td><td>박선유(C)</td><td><a class="tel" href="tel:01057187804">010-5718-7804</a></td><td><a class="tel" href="tel:01053417804">010-5341-7804</a></td></tr>
+        <tr><td></td><td>송승우</td><td><a class="tel" href="tel:01043274060">010-4327-4060</a></td><td><a class="tel" href="tel:01020434060">010-2043-4060</a></td></tr>
+        <tr><td></td><td>조 민</td><td><a class="tel" href="tel:01026859764">010-2685-9764</a></td><td><a class="tel" href="tel:01073620203">010-7362-0203</a></td></tr>
+        <tr><td></td><td>김성준</td><td><a class="tel" href="tel:01073347844">010-7334-7844</a></td><td><a class="tel" href="tel:01033097844">010-3309-7844</a></td></tr>
+        <tr><td>2(남)</td><td>강우빈</td><td><a class="tel" href="tel:01062937636">010-6293-7636</a></td><td><a class="tel" href="tel:01063937636">010-6393-7636</a></td></tr>
+        <tr><td></td><td>박시우</td><td><a class="tel" href="tel:01093938042">010-9393-8042</a></td><td><a class="tel" href="tel:01020833663">010-2083-3663</a></td></tr>
+        <tr><td></td><td>김주원(C)</td><td><a class="tel" href="tel:01083487215">010-8348-7215</a></td><td><a class="tel" href="tel:01035519053">010-3551-9053</a></td></tr>
+        <tr><td>3(남)</td><td>안도율(C)</td><td><a class="tel" href="tel:01071600780">010-7160-0780</a></td><td><a class="tel" href="tel:01063830780">010-6383-0780</a></td></tr>
+        <tr><td></td><td>윤재원</td><td><a class="tel" href="tel:01094490566">010-9449-0566</a></td><td><a class="tel" href="tel:01065860623">010-6586-0623</a></td></tr>
+        <tr><td></td><td>이재영</td><td><a class="tel" href="tel:01021038663">010-2103-8663</a></td><td><a class="tel" href="tel:01035888663">010-3588-8663</a></td></tr>
+        <tr><td>4(여)</td><td>김현지</td><td><a class="tel" href="tel:01083289613">010-8328-9613</a></td><td><a class="tel" href="tel:01045159613">010-4515-9613</a></td></tr>
+        <tr><td></td><td>송설아(C)</td><td><a class="tel" href="tel:01058480089">010-5848-0089</a></td><td><a class="tel" href="tel:01045636289">010-4563-6289</a></td></tr>
+        <tr><td></td><td>이수은</td><td><a class="tel" href="tel:01088312555">010-8831-2555</a></td><td><a class="tel" href="tel:01092331217">010-9233-1217</a></td></tr>
+        <tr><td>5(여)</td><td>고다혜</td><td><a class="tel" href="tel:01058401409">010-5840-1409</a></td><td><a class="tel" href="tel:01073591207">010-7359-1207</a></td></tr>
+        <tr><td></td><td>김경원</td><td><a class="tel" href="tel:01050069353">010-5006-9353</a></td><td><a class="tel" href="tel:01040169353">010-4016-9353</a></td></tr>
+        <tr><td></td><td>박지민</td><td><a class="tel" href="tel:01049475325">010-4947-5325</a></td><td><a class="tel" href="tel:01038803264">010-3880-3264</a></td></tr>
+        <tr><td></td><td>윤예나(C)</td><td><a class="tel" href="tel:01085825783">010-8582-5783</a></td><td><a class="tel" href="tel:01041072208">010-4107-2208</a></td></tr>
+        <tr><td></td><td>홍채영</td><td><a class="tel" href="tel:01083388929">010-8338-8929</a></td><td><a class="tel" href="tel:01063625200">010-6362-5200</a></td></tr>
+      </tbody>
+    </table></div></div>
+  </details>
+  </div>
+</section>
+
+<footer>
+  <b>검토 후 사용하세요.</b> 2026 수학여행 실시 계획을 바탕으로 만든 인솔 교사용 초안입니다. 확정본과 다른 내용이 있으면 확정본을 따릅니다.<br>
+  <b>사용 방법.</b> 선생님마다 각자 휴대폰에서 열어 쓰시면 됩니다. 체크한 내용은 각자 기기에만 저장되고 서로 보이지 않습니다.<br>
+  <b>공유 범위.</b> 학생 연락처와 건강 정보가 들어 있습니다. 인솔 교직원에게만 전달하고, 공개된 곳에 올리지 마세요. 여행이 끝나면 파일을 삭제해 주세요.<br>
+  종이로 쓰실 경우 브라우저 인쇄 기능을 이용하시면 체크칸이 있는 형태로 출력됩니다.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'trip2026:me';
+  var state = { checks:{}, stamps:{}, meals:{}, rooms:{}, seats:{}, open:{} };
+  var artStore = !!(window.storage && window.storage.get);
+  var lsStore = (function(){
+    try{ localStorage.setItem('__t','1'); localStorage.removeItem('__t'); return true; }
+    catch(e){ return false; }
+  })();
+  var hasStore = artStore || lsStore;
+  var stateEl = document.getElementById('syncstate');
+
+  function hhmm(ts){
+    var d = new Date(ts);
+    return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+  }
+  function md(ts){
+    var d = new Date(ts);
+    return (d.getMonth()+1) + '/' + d.getDate();
+  }
+  function say(msg, warn){
+    stateEl.textContent = msg;
+    stateEl.className = warn ? 'state warn' : 'state';
+  }
+
+  function apply(v){
+    state.checks = v.checks || {};
+    state.stamps = v.stamps || {};
+    state.meals  = v.meals  || {};
+    state.rooms  = v.rooms  || {};
+    state.seats  = v.seats  || {};
+    state.open   = v.open   || {};
+  }
+  async function load(){
+    if(artStore){
+      try{
+        var r = await window.storage.get(KEY, false);
+        if(r && r.value){ apply(JSON.parse(r.value)); return; }
+      }catch(e){ /* 아직 저장된 기록 없음 */ }
+    }
+    if(lsStore){
+      try{
+        var t = localStorage.getItem(KEY);
+        if(t) apply(JSON.parse(t));
+      }catch(e){ /* 아직 저장된 기록 없음 */ }
+    }
+  }
+  var saving = false, pending = false;
+  async function save(){
+    if(!hasStore) return;
+    if(saving){ pending = true; return; }
+    saving = true;
+    var txt = JSON.stringify(state);
+    try{
+      if(artStore) await window.storage.set(KEY, txt, false);
+      else localStorage.setItem(KEY, txt);
+      say('저장됨 ' + hhmm(Date.now()));
+    }catch(e){
+      try{
+        if(lsStore){ localStorage.setItem(KEY, txt); say('저장됨 ' + hhmm(Date.now())); }
+        else say('저장하지 못했습니다. 잠시 뒤 다시 눌러 주세요.', true);
+      }catch(e2){
+        say('저장하지 못했습니다. 잠시 뒤 다시 눌러 주세요.', true);
+      }
+    }
+    saving = false;
+    if(pending){ pending = false; save(); }
+  }
+
+  function paintChecks(){
+    document.querySelectorAll('.grp input[type=checkbox]').forEach(function(box){
+      var k = box.getAttribute('data-k');
+      var rec = state.checks[k];
+      box.checked = !!rec;
+      var li = box.closest('li');
+      var em = box.parentElement.querySelector('em');
+      if(rec){
+        li.classList.add('done');
+        em.textContent = md(rec.at) + ' ' + hhmm(rec.at) + ' 확인';
+      }else{
+        li.classList.remove('done');
+        em.textContent = '';
+      }
+    });
+    document.querySelectorAll('.grp[data-group]').forEach(function(g){
+      var id = g.getAttribute('data-group');
+      var boxes = g.querySelectorAll('input[type=checkbox]');
+      var done = g.querySelectorAll('input[type=checkbox]:checked').length;
+      g.querySelector('.prog[data-prog="'+id+'"]').textContent = done + ' / ' + boxes.length;
+    });
+  }
+
+  var points = [
+    ['s1','1호차 6-2','학생 18명','경남76바2503','김병무','010-9831-7775'],
+    ['s2','2호차 6-1','학생 17명','경남72바7225','곽상춘','010-8569-7575'],
+    ['s3','3호차 6-3','학생 18명','경남76바1305','신기용','010-6330-4009']
+  ];
+  var stampBox = document.getElementById('stamps');
+  points.forEach(function(p){
+    var row = document.createElement('div');
+    row.className = 'stamp';
+    var b = document.createElement('b'); b.textContent = p[1];
+    var btn = document.createElement('button'); btn.type='button'; btn.textContent='점검 완료';
+    var out = document.createElement('output'); out.textContent = p[2];
+    btn.addEventListener('click', function(){
+      state.stamps[p[0]] = { at: Date.now() };
+      paintStamps();
+      save();
+    });
+    row.appendChild(b); row.appendChild(btn); row.appendChild(out);
+    var car = document.createElement('div');
+    car.className = 'carinfo';
+    var plate = document.createElement('span');
+    plate.className = 'plate';
+    plate.textContent = p[3];
+    var who = document.createElement('span');
+    who.textContent = '기사 ' + p[4];
+    var tel = document.createElement('a');
+    tel.href = 'tel:' + p[5].replace(/-/g, '');
+    tel.textContent = p[5];
+    car.appendChild(plate); car.appendChild(who); car.appendChild(tel);
+    row.appendChild(car);
+    row.dataset.id = p[0];
+    stampBox.appendChild(row);
+  });
+
+  function paintStamps(){
+    points.forEach(function(p){
+      var row = stampBox.querySelector('[data-id="'+p[0]+'"]');
+      var btn = row.querySelector('button');
+      var out = row.querySelector('output');
+      var rec = state.stamps[p[0]];
+      if(rec){
+        out.textContent = p[2] + ' · ' + hhmm(rec.at) + ' 확인';
+        btn.classList.add('done');
+        btn.textContent = '다시 점검';
+      }else{
+        out.textContent = p[2];
+        btn.classList.remove('done');
+        btn.textContent = '점검 완료';
+      }
+    });
+  }
+
+  document.querySelectorAll('.grp input[type=checkbox]').forEach(function(box){
+    box.addEventListener('change', function(){
+      var k = box.getAttribute('data-k');
+      if(box.checked) state.checks[k] = { at: Date.now() };
+      else delete state.checks[k];
+      paintChecks();
+      save();
+    });
+  });
+
+  document.getElementById('reset').addEventListener('click', function(){
+    if(!confirm('체크한 내용을 모두 지웁니다. 계속할까요?')) return;
+    state.checks = {}; state.stamps = {}; state.meals = {}; state.rooms = {}; state.seats = {};
+    paintChecks(); paintStamps(); paintMeals(); paintRooms(); paintSeats(); save();
+  });
+
+  // 목차
+  var menubtn = document.getElementById('menubtn');
+  var nav = document.getElementById('nav');
+  menubtn.addEventListener('click', function(){
+    var open = menubtn.getAttribute('aria-expanded') === 'true';
+    menubtn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    nav.hidden = open;
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      menubtn.setAttribute('aria-expanded','false');
+      nav.hidden = true;
+    }
+  });
+
+  // 일정 탭
+  var tabs = document.querySelectorAll('.tabs button');
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabs.forEach(function(b){ b.setAttribute('aria-selected', b===btn ? 'true':'false'); });
+      ['d1','d2','d3'].forEach(function(id){
+        document.getElementById(id).hidden = (id !== btn.getAttribute('data-day'));
+      });
+    });
+  });
+
+
+  // ── 조식 확인 체크리스트 (방별) ──────────────────────
+  // 이름 → [조장, 요양호]
+  var FLAG = {
+    '박선유':[1,1],'송설아':[1,1],'김보민':[1,1],'서지민':[1,1],
+    '장윤호':[1,0],'안도율':[1,0],'김주원':[1,0],'김지온':[1,0],'김다온':[1,0],
+    '최다인':[1,0],'이연서':[1,0],'문서원':[1,0],'이가원':[1,0],'윤예나':[1,0],
+    '이진혁':[0,1],'김민솔':[0,1],'박채아':[0,1],'박정민':[0,1],'김해든':[0,1],
+    '송하윤':[0,1],'김현지':[0,1],'고다혜':[0,1],'김성준':[0,1]
+  };
+  var MEALSEC = [
+    { label:'6학년 1반', rooms:[{key:'m5',cls:'6-1'},{key:'f1',cls:'6-1'},{key:'f4',cls:'6-1'}] },
+    { label:'6학년 2반', rooms:[{key:'m2',cls:'6-2'},{key:'m4',cls:'6-2'},{key:'f2',cls:'6-2'},{key:'f5',cls:'6-2'}] },
+    { label:'6학년 3반', rooms:[{key:'m1',cls:'6-3'},{key:'m3',cls:'6-3'},{key:'f3',cls:'6-3'},{key:'f6',cls:'6-3'},
+                                {key:'t2',cls:'6-3',only:['김성준']}] }
+  ];
+
+  function roomNo(key){
+    var inp = document.querySelector('input[data-room="' + key + '"]');
+    if(!inp) return '';
+    var v = (inp.value || '').trim();
+    return v || inp.getAttribute('data-def');
+  }
+
+  function roomNames(r){
+    if(r.only) return r.only.slice();
+    var inp = document.querySelector('input[data-room="' + r.key + '-s"]');
+    var raw = inp ? (inp.value || inp.getAttribute('data-def')) : '';
+    return raw.split(',').map(function(x){ return x.trim(); }).filter(Boolean);
+  }
+
+  function buildMeal(root){
+    var day = root.getAttribute('data-day');
+    var label = root.getAttribute('data-label') || '조식';
+    var total = 0;
+    MEALSEC.forEach(function(sec){ sec.rooms.forEach(function(r){ total += roomNames(r).length; }); });
+
+    var h = '<button type="button" class="mhead" aria-expanded="false">'
+          +   '<i>\u25BC</i><span>조식 확인 &middot; ' + label + '</span>'
+          +   '<span class="cnt">0 / ' + total + '</span>'
+          + '</button>'
+          + '<div class="mbody">'
+          +   '<div class="mtools">'
+          +     '<button type="button" data-act="left" aria-pressed="false">아직 안 먹은 학생만</button>'
+          +   '</div>';
+
+    MEALSEC.forEach(function(sec){
+      h += '<div class="msec">' + sec.label + '</div>';
+      sec.rooms.forEach(function(r){
+        var names = roomNames(r);
+        if(!names.length) return;
+        h += '<div class="mcls">'
+          +    '<button type="button" class="chead" aria-expanded="false">'
+          +      '<i>\u25BC</i><span class="rn" data-roomref="' + r.key + '">' + roomNo(r.key) + '호</span>'
+          +      '<span class="cnt"></span>'
+          +    '</button><div class="cbody">';
+        names.forEach(function(nm){
+          var f = FLAG[nm] || [0,0];
+          h += '<label class="mitem">'
+            +    '<input type="checkbox" data-m="' + day + '|' + r.cls + '|' + nm + '">'
+            +    '<span class="nm">' + nm + '</span>'
+            +    (f[0] ? '<span class="mtag lead">조장</span>' : '')
+            +    (f[1] ? '<span class="mtag care">요양호</span>' : '')
+            + '</label>';
+        });
+        h += '<div class="mnone" hidden>이 방은 모두 확인했습니다</div></div></div>';
+      });
+    });
+
+    h += '<p class="mfoot">방마다 인원을 세면서 확인합니다. <b>요양호</b> 표시 학생은 식사 여부와 함께 '
+      +  '건강 상태와 복용약을 확인해 주세요.</p></div>';
+
+    var wasOpen = root.classList.contains('is-open');
+    root.innerHTML = h;
+    root.dataset.total = total;
+    if(wasOpen) root.classList.add('is-open');
+
+    root.querySelector('.mhead').setAttribute('aria-expanded', wasOpen ? 'true' : 'false');
+    root.querySelector('.mhead').addEventListener('click', function(){
+      var open = root.classList.toggle('is-open');
+      this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    root.querySelectorAll('.chead').forEach(function(b){
+      b.addEventListener('click', function(){
+        var open = b.parentNode.classList.toggle('is-open');
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+    root.querySelector('[data-act="left"]').addEventListener('click', function(){
+      var on = this.getAttribute('aria-pressed') !== 'true';
+      this.setAttribute('aria-pressed', on ? 'true' : 'false');
+      this.textContent = on ? '전체 보기' : '아직 안 먹은 학생만';
+      root.classList.toggle('only-left', on);
+      paintMeals();
+    });
+    root.querySelectorAll('input[data-m]').forEach(function(box){
+      box.addEventListener('change', function(){
+        var k = box.getAttribute('data-m');
+        if(box.checked) state.meals[k] = { at: Date.now() };
+        else delete state.meals[k];
+        paintMeals();
+        save();
+      });
+    });
+  }
+
+  function rebuildMeals(){
+    document.querySelectorAll('.meal').forEach(buildMeal);
+    paintMeals();
+  }
+
+  function paintMeals(){
+    document.querySelectorAll('.meal').forEach(function(root){
+      var onlyLeft = root.classList.contains('only-left');
+      var done = 0, total = 0;
+      root.querySelectorAll('.mcls').forEach(function(cl){
+        var boxes = cl.querySelectorAll('input[data-m]');
+        var d = 0, visible = 0;
+        total += boxes.length;
+        boxes.forEach(function(box){
+          var checked = !!state.meals[box.getAttribute('data-m')];
+          box.checked = checked;
+          if(checked) d++;
+          var item = box.closest('.mitem');
+          item.classList.toggle('on', checked);
+          var hide = onlyLeft && checked;
+          item.classList.toggle('hide', hide);
+          if(!hide) visible++;
+        });
+        done += d;
+        cl.querySelector('.chead .cnt').textContent = d + ' / ' + boxes.length;
+        cl.classList.toggle('done', d === boxes.length && boxes.length > 0);
+        cl.querySelector('.mnone').hidden = !(onlyLeft && visible === 0);
+      });
+      root.querySelector('.mhead .cnt').textContent = done + ' / ' + total;
+      root.classList.toggle('done', done === total && total > 0);
+    });
+  }
+
+  function syncRoomLabels(){
+    document.querySelectorAll('[data-roomref]').forEach(function(el){
+      el.textContent = roomNo(el.getAttribute('data-roomref')) + '호';
+    });
+  }
+
+  document.querySelectorAll('.meal').forEach(buildMeal);
+
+  // ── 숙소 호실 수정 ───────────────────────────────────
+  function paintRooms(){
+    var changed = 0;
+    document.querySelectorAll('input[data-room]').forEach(function(inp){
+      var k = inp.getAttribute('data-room');
+      var def = inp.getAttribute('data-def');
+      var val = state.rooms[k];
+      inp.value = (val === undefined || val === null || val === '') ? def : val;
+      var diff = inp.value !== def;
+      inp.classList.toggle('changed', diff);
+      var orig = inp.parentElement.querySelector('.orig');
+      if(orig){
+        orig.hidden = !diff;
+        orig.textContent = diff ? '원래 ' + def + '호' : '';
+      }
+      if(diff) changed++;
+    });
+    syncRoomLabels();
+    var msg = document.getElementById('roommsg');
+    if(msg){
+      msg.textContent = changed
+        ? '숙소 배정 ' + changed + '곳을 고쳤습니다. 인솔 교직원에게도 알려 주세요.'
+        : '호실과 대상 칸을 눌러 바로 고칠 수 있습니다. 고친 내용은 이 휴대폰에 저장됩니다.';
+    }
+  }
+
+  document.querySelectorAll('input[data-room]').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      var k = inp.getAttribute('data-room');
+      var def = inp.getAttribute('data-def');
+      var v = inp.value.trim();
+      if(v === '' || v === def) delete state.rooms[k];
+      else state.rooms[k] = v;
+      var diff = inp.value !== def && inp.value.trim() !== '';
+      inp.classList.toggle('changed', diff);
+      syncRoomLabels();
+      save();
+    });
+    inp.addEventListener('change', function(){
+      if(inp.getAttribute('data-room').slice(-2) === '-s') rebuildMeals();
+    });
+    inp.addEventListener('blur', paintRooms);
+  });
+
+  var roomResetBtn = document.getElementById('roomreset');
+  if(roomResetBtn){
+    roomResetBtn.addEventListener('click', function(){
+      if(!confirm('고친 숙소 배정을 모두 계획서 원래대로 되돌립니다. 계속할까요?')) return;
+      state.rooms = {};
+      paintRooms();
+      rebuildMeals();
+      save();
+    });
+  }
+
+
+  // ── 좌석표 접기 ──────────────────────────────────────
+  document.querySelectorAll('.bus>.bhead').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var open = btn.parentNode.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+
+  // ── 섹션·그룹 접기 ───────────────────────────────────
+  function setOpen(el, btn, key, open){
+    el.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if(open) state.open[key] = 1; else delete state.open[key];
+  }
+
+  var toggles = [];
+  document.querySelectorAll('section > .secth > .sechead').forEach(function(btn){
+    var sec = btn.closest('section');
+    toggles.push({ el:sec, btn:btn, key:'sec:' + sec.id, def: sec.id === 'urgent' });
+    btn.addEventListener('click', function(){
+      setOpen(sec, btn, 'sec:' + sec.id, !sec.classList.contains('open'));
+      save();
+    });
+  });
+
+  document.querySelectorAll('.grp > .ghead').forEach(function(btn){
+    var grp = btn.parentNode;
+    var key = 'grp:' + grp.getAttribute('data-group');
+    toggles.push({ el:grp, btn:btn, key:key, def:false });
+    btn.addEventListener('click', function(){
+      setOpen(grp, btn, key, !grp.classList.contains('open'));
+      save();
+    });
+  });
+
+  function paintOpen(){
+    toggles.forEach(function(t){
+      var open = state.open[t.key] !== undefined ? true : t.def;
+      t.el.classList.toggle('open', open);
+      t.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(open) state.open[t.key] = 1;
+    });
+  }
+
+  // 목차로 이동하면 해당 섹션을 펼침
+  document.querySelectorAll('.navchips a').forEach(function(a){
+    a.addEventListener('click', function(){
+      var sec = document.querySelector(a.getAttribute('href'));
+      if(!sec) return;
+      var btn = sec.querySelector(':scope > .secth > .sechead');
+      if(btn && !sec.classList.contains('open')){
+        setOpen(sec, btn, 'sec:' + sec.id, true);
+        save();
+      }
+    });
+  });
+
+
+  // ── 교직원 좌석 수정 ─────────────────────────────────
+  function paintSeats(){
+    var changed = 0;
+    document.querySelectorAll('input[data-seat]').forEach(function(inp){
+      var k = inp.getAttribute('data-seat');
+      var def = inp.getAttribute('data-def');
+      var val = state.seats[k];
+      inp.value = (val === undefined || val === null || val === '') ? def : val;
+      var diff = inp.value !== def;
+      inp.classList.toggle('changed', diff);
+      if(diff) changed++;
+    });
+    var msg = document.getElementById('seatmsg');
+    if(msg){
+      msg.textContent = changed
+        ? '좌석 ' + changed + '곳을 고쳤습니다.'
+        : '좌석의 이름을 눌러 바로 고칠 수 있습니다.';
+    }
+  }
+
+  document.querySelectorAll('input[data-seat]').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      var k = inp.getAttribute('data-seat');
+      var def = inp.getAttribute('data-def');
+      var v = inp.value.trim();
+      if(v === '' || v === def) delete state.seats[k];
+      else state.seats[k] = v;
+      inp.classList.toggle('changed', v !== '' && v !== def);
+      save();
+    });
+    inp.addEventListener('blur', paintSeats);
+  });
+
+  var seatResetBtn = document.getElementById('seatreset');
+  if(seatResetBtn){
+    seatResetBtn.addEventListener('click', function(){
+      if(!confirm('고친 좌석을 모두 원래대로 되돌립니다. 계속할까요?')) return;
+      state.seats = {};
+      paintSeats();
+      save();
+    });
+  }
+
+  // 시작
+  if(!hasStore){
+    document.getElementById('storagenote').hidden = false;
+    say('이 화면에서는 체크가 저장되지 않습니다.', true);
+    paintChecks();
+    paintStamps();
+    paintMeals();
+    paintRooms();
+    paintSeats();
+    paintOpen();
+  }else{
+    (async function(){
+      await load();
+      paintChecks();
+      paintStamps();
+      paintMeals();
+      paintRooms();
+      paintSeats();
+      paintOpen();
+      say('확인한 내용은 이 휴대폰에만 저장됩니다.');
+    })();
+  }
+})();
+</script>
+</body>
+</html>
